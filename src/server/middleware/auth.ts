@@ -8,7 +8,7 @@ Date: dd/mm/yyyy = 03/10/2021 */
 import passport from "passport";
 import passportLocal, { IVerifyOptions } from 'passport-local';
 import UserModel from '../models/user';
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 // we are storing locally, so we use a local strategy
 const LocalStrategy = passportLocal.Strategy;
@@ -88,10 +88,11 @@ const signupFunction = async (
 passport.use('login', new LocalStrategy(strategyOptions, loginFunction));
 passport.use('signup', new LocalStrategy(strategyOptions, signupFunction));
 
-// If the user isn't logged in and tries to access a secure page, they get an 401 unauthorized error.
+// If the user isn't logged in and tries to access a secure page, they get redirected to the login page.
 export const isLoggedIn = (req: Request, res: Response, done: (error: any, user?: any, options?: IVerifyOptions) => void) => {
     if (!req.user) {
-        return res.status(401).json({ msg: 'Unauthorized' })
+        res.redirect('../auth/login');
+        return
     }
     done(null, req.user);
 }
