@@ -20,6 +20,19 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">Contact Me</a>
                 </li>
+                <!-- This will show the link to Contact List+Logout if the user is logged in, otherwise it shows just Login -->
+                <% if(displayName) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact/list">Business Contact List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/logout"><i class="fas fa-sign-out-alt fa-lg"></i> Logout</a>
+                </li>
+                <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/login"><i class="fas fa-sign-in-alt fa-lg"></i> Login</a>
+                </li>
+                <% } %>
             </ul>
         </div>
     </div>
