@@ -8,7 +8,7 @@ import express from 'express';
 import ContactModel from '../models/contact';
 import { UserDisplayName } from '../tools/userDisplayName';
 
-//(R)ead in CRUD
+//Read in CRUD
 export function DisplayListPage(req: express.Request, res: express.Response, next: express.NextFunction) {
     ContactModel.find(function (err, contactCollection) {
         if (err) {
@@ -16,11 +16,11 @@ export function DisplayListPage(req: express.Request, res: express.Response, nex
             res.end(err);
         }
         console.log("COLLECTION: " + contactCollection);
-        res.render('content/contact/contact-list', { title: 'Contact list', page: 'contact/contact-list', contact: contactCollection, displayName: UserDisplayName(req) })
+        res.render('content/contact/contact-list', { title: 'Contact list', page: 'contact/list', contact: contactCollection, displayName: UserDisplayName(req) })
     })
 }
 
-// Display (E)dit page
+// Display Edit page
 export function DisplayEditPage(req: express.Request, res: express.Response, next: express.NextFunction) {
     let id = req.params.id;
     ContactModel.findById(id, {}, {}, (err, contactItemToEdit) => {
@@ -29,17 +29,17 @@ export function DisplayEditPage(req: express.Request, res: express.Response, nex
             res.end(err);
         };
         console.log("CONTACT ITEM TO EDIT: " + contactItemToEdit);
-        res.render('content/contact/contact-edit', { title: "Contact Edit", page: "contact/contact-edit", item: contactItemToEdit, displayName: UserDisplayName(req) })
+        res.render('content/contact/contact-edit', { title: "Contact Edit", page: "contact/edit", item: contactItemToEdit, displayName: UserDisplayName(req) })
     })
 }
 
-// Display (C)reate page
+// Display Add page
 export function DisplayAddPage(req: express.Request, res: express.Response, next: express.NextFunction) {
     // show the edit view
-    res.render('content/contact/contact-edit', { title: 'Add Contact', page: 'contact/contact-edit', item: '', displayName: UserDisplayName(req) });
+    res.render('content/contact/contact-edit', { title: 'Add Contact', page: 'contact/edit', item: '', displayName: UserDisplayName(req) });
 }
 
-// Process (E)dit page
+// Process Edit page
 export function ProcessEditPage(req: express.Request, res: express.Response, next: express.NextFunction) {
     let id = req.params.id;
 
@@ -56,11 +56,11 @@ export function ProcessEditPage(req: express.Request, res: express.Response, nex
             res.end(err);
         }
 
-        res.redirect('content//contact/contact-list');
+        res.redirect('/contact/list');
     })
 }
 
-// Process (C)reate page
+// Process Add page
 export function ProcessAddPage(req: express.Request, res: express.Response, next: express.NextFunction): void {
 
     let newItem = new ContactModel({
@@ -74,11 +74,11 @@ export function ProcessAddPage(req: express.Request, res: express.Response, next
             console.error(err);
             res.end(err);
         };
-        res.redirect('content/contact/contact-list');
+        res.redirect('/contact/list');
     })
 }
 
-// Process (D)elete page
+// Process Delete page
 export function ProcessDeletePage(req: express.Request, res: express.Response, next: express.NextFunction) {
     let id = req.params.id;
     ContactModel.remove({ _id: id }, (err) => {
@@ -86,6 +86,6 @@ export function ProcessDeletePage(req: express.Request, res: express.Response, n
             console.error(err);
             res.end(err);
         }
-        res.redirect('content/contact/contact-list');
+        res.redirect('/contact/list');
     })
 }

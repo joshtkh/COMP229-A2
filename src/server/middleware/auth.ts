@@ -3,7 +3,7 @@
 
 Student Name: Joshua Harding
 Student ID: 301186067
-Date: dd/mm/yyyy = 03/10/2021 */
+Date: dd/mm/yyyy = 20/10/2021 */
 
 import passport from "passport";
 import passportLocal, { IVerifyOptions } from 'passport-local';
@@ -28,11 +28,11 @@ const loginFunction: any = async (
     const user: any = await UserModel.findOne({ username });
     // if the user doesn't exist, send an error
     if (!user) {
-        return done(null, false, { message: "User does not exist" });
+        return done(null, false, { message: "User does not exist." });
     }
     // if the password isn't valid, send an error
     if (!(await user.isValidPassword(password))) {
-        return done(null, false, { message: "Password is not valid" });
+        return done(null, false, { message: "Password is not valid." });
     }
     // If we get here, the user is authenticated properly and we can return the user through done.
     console.log("User Authenticated Successfully");
@@ -91,8 +91,7 @@ passport.use('signup', new LocalStrategy(strategyOptions, signupFunction));
 // If the user isn't logged in and tries to access a secure page, they get redirected to the login page.
 export const isLoggedIn = (req: Request, res: Response, done: (error: any, user?: any, options?: IVerifyOptions) => void) => {
     if (!req.user) {
-        res.redirect('../auth/login');
-        return
+        res.redirect('/auth/login');
     }
     done(null, req.user);
 }

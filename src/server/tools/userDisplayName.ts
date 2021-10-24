@@ -5,4 +5,5 @@ export function UserDisplayName(req: Request) {
         let user = req.user as UserDocument;
         return user.displayName.toString();
     }
+    return "";
 }

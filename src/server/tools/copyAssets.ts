@@ -6,6 +6,6 @@ It is used in package.json */
 import shell from "shelljs";
 // Recursively copy all the view templates and assets located in src/server/views and src/public folders into our dist folder
 shell.cp("-R", ["src/public"], "dist/");
-shell.cp("-R", ["src/server/views"], "dist/server/views");
-// Clean up unnecessary ts files 
-shell.rm(["dist/src/public/scripts/*.ts"]);
+shell.cp("-R", ["src/server/views/"], "dist/server/");
+// Clean up unnecessary ts files
+shell.rm(["dist/public/scripts/*.ts"]);
