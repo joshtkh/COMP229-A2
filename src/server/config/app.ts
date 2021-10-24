@@ -34,11 +34,13 @@ import contactRouter from "../routes/contact";
 import userRouter from "../routes/user";
 
 // DB Configuration
-mongoose.connect((DBConfig.RemoteURI) ? DBConfig.RemoteURI : DBConfig.LocalURI);
+const connectURI = DBConfig.RemoteURI ? DBConfig.RemoteURI : DBConfig.LocalURI;
+const hostName = DBConfig.RemoteURI ? "REMOTE HOST" : "LOCAL HOST";
+mongoose.connect(connectURI);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function () {
-  console.log('connected to MongoDB at:' + DBConfig.HostName);
+  console.log('connected to MongoDB at: ' + hostName);
 })
 
 // App configuration
