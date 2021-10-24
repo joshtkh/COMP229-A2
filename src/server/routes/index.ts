@@ -3,12 +3,15 @@ Student Name: Joshua Harding
 Student ID: 301186067
 Date: dd/mm/yyyy = 03/10/2021 */
 import express from "express";
+import { DisplayAboutPage, DisplayContactPage, DisplayHomePage, DisplayProjectsPage, DisplayServicesPage } from "../controllers";
+
 const router = express.Router();
 
 // Print to the console to let dev know the app is running.
 console.log("Application started.");
 
 /* GET all needed pages */
+router.get("/", DisplayHomePage);
 router.get('/', function(req:express.Request, res:express.Response, next:express.NextFunction) {
   res.render('home', { title: 'Home' });
 });

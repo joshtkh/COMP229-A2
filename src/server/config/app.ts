@@ -8,7 +8,13 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import createError from "http-errors";
-import indexRouter from "./routes/index";
+import mongoose from 'mongoose';
+import * as DBConfig from './db';
+import passport from "passport";
+import MongoStore from "connect-mongo";
+
+
+import indexRouter from "../routes/index";
 
 const app = express();
 
