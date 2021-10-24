@@ -2,13 +2,13 @@
   "name": "comp229-a1",
   "version": "0.0.0",
   "private": true,
-  "main": "./dist/src/index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "start": "node .",
     "localstart": "nodemon -w src -e ts,ejs -x npm run dev:start",
     "dev": "node .",
     "dev:start": "npm-run-all killp build dev",
-    "copy-assets": "ts-node tools/copyAssets",
+    "copy-assets": "ts-node src/server/tools/copyAssets",
     "build": "npm-run-all tsc copy-assets",
     "tsc": "tsc",
     "killp": "kill-port 3000"

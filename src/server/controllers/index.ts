@@ -9,17 +9,17 @@ import { UserDisplayName } from '../tools/userDisplayName';
 
 // Export all routes for INDEX PAGES
 export function DisplayHomePage(req: express.Request, res: express.Response, next: express.NextFunction) {
-    res.render('home', { title: 'Home', page: 'home', displayName: UserDisplayName(req) });
+    res.render('content/home', { title: 'Home', page: 'home', displayName: UserDisplayName(req) });
 }
 export function DisplayAboutPage(req: express.Request, res: express.Response, next: express.NextFunction) {
-    res.render('about', { title: 'About Me', page: 'about', displayName: UserDisplayName(req) });
+    res.render('content/about', { title: 'About Me', page: 'about', displayName: UserDisplayName(req) });
 }
 export function DisplayProjectsPage(req: express.Request, res: express.Response, next: express.NextFunction) {
-    res.render('projects', { title: 'Projects', page: 'projects', displayName: UserDisplayName(req) });
+    res.render('content/projects', { title: 'Projects', page: 'projects', displayName: UserDisplayName(req) });
 }
 export function DisplayServicesPage(req: express.Request, res: express.Response, next: express.NextFunction) {
-    res.render('services', { title: 'Services', page: 'services', displayName: UserDisplayName(req) });
+    res.render('content/services', { title: 'Services', page: 'services', displayName: UserDisplayName(req) });
 }
 export function DisplayContactPage(req: express.Request, res: express.Response, next: express.NextFunction) {
-    res.render('contact', { title: 'Contact', layout: 'layouts/contact-layout', page: 'contact', displayName: UserDisplayName(req) });
+    res.render('content/contact', { title: 'Contact', layout: 'layouts/contact-layout', page: 'contact', displayName: UserDisplayName(req) });
 }

@@ -1,3 +1,9 @@
+/* contact.ts CONTROLLER
+Implements the functions needed in the contact.ts ROUTER
+Student Name: Joshua Harding
+Student ID: 301186067
+Date: dd/mm/yyyy = 20/10/2021 */
+
 import express from 'express';
 import ContactModel from '../models/contact';
 import { UserDisplayName } from '../tools/userDisplayName';
@@ -10,7 +16,7 @@ export function DisplayListPage(req: express.Request, res: express.Response, nex
             res.end(err);
         }
         console.log("COLLECTION: " + contactCollection);
-        res.render('index', { title: 'Contact list', page: 'contact/contact-list', contact: contactCollection, displayName: UserDisplayName(req) })
+        res.render('content/contact/contact-list', { title: 'Contact list', page: 'contact/contact-list', contact: contactCollection, displayName: UserDisplayName(req) })
     })
 }
 
@@ -23,14 +29,14 @@ export function DisplayEditPage(req: express.Request, res: express.Response, nex
             res.end(err);
         };
         console.log("CONTACT ITEM TO EDIT: " + contactItemToEdit);
-        res.render('index', { title: "Contact Edit", page: "contact/contact-edit", item: contactItemToEdit, displayName: UserDisplayName(req) })
+        res.render('content/contact/contact-edit', { title: "Contact Edit", page: "contact/contact-edit", item: contactItemToEdit, displayName: UserDisplayName(req) })
     })
 }
 
 // Display (C)reate page
 export function DisplayAddPage(req: express.Request, res: express.Response, next: express.NextFunction) {
     // show the edit view
-    res.render('index', { title: 'Add Contact', page: 'contact/contact-edit', item: '', displayName: UserDisplayName(req) });
+    res.render('content/contact/contact-edit', { title: 'Add Contact', page: 'contact/contact-edit', item: '', displayName: UserDisplayName(req) });
 }
 
 // Process (E)dit page
@@ -50,7 +56,7 @@ export function ProcessEditPage(req: express.Request, res: express.Response, nex
             res.end(err);
         }
 
-        res.redirect('/contact/list');
+        res.redirect('content//contact/contact-list');
     })
 }
 
@@ -68,21 +74,18 @@ export function ProcessAddPage(req: express.Request, res: express.Response, next
             console.error(err);
             res.end(err);
         };
-
-        res.redirect('/contact/list');
+        res.redirect('content/contact/contact-list');
     })
 }
 
 // Process (D)elete page
 export function ProcessDeletePage(req: express.Request, res: express.Response, next: express.NextFunction) {
     let id = req.params.id;
-
     ContactModel.remove({ _id: id }, (err) => {
         if (err) {
             console.error(err);
             res.end(err);
         }
-
-        res.redirect('/contact/list');
+        res.redirect('content/contact/contact-list');
     })
 }

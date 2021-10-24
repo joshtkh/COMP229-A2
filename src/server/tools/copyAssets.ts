@@ -4,7 +4,8 @@ It is used in package.json */
 
 // just need to copy the files with unix commands using shelljs
 import shell from "shelljs";
-// Recursively copy all the view templates and assets located in src/views and src/public folders into our dist folder
-shell.cp("-R", ["src/views", "src/public"], "dist/src");
+// Recursively copy all the view templates and assets located in src/server/views and src/public folders into our dist folder
+shell.cp("-R", ["src/public"], "dist/");
+shell.cp("-R", ["src/server/views"], "dist/server/views");
 // Clean up unnecessary ts files 
 shell.rm(["dist/src/public/scripts/*.ts"]);
