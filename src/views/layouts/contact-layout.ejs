@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- This is the layout page for Contact Me -->
+<head>
+    <!-- This partial holds all our sites metadata and head data -->
+    <%- include('../partials/head') %>
+    <title><%- title %></title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!-- This partial is our nav-bar -->
+    <%- include('../partials/header') %>
+    <main role="main" class="m-auto p-5 flex-shrink-0 border border-info">
+        <!-- This tag indicates where the content should be put into this layout page. -->
+        <%- body %>
+    </main>
+    <!-- This partial is for our footer -->
+    <%- include('../partials/footer') %>
+</body>
+</html>
