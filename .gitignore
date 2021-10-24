@@ -1,5 +1,5 @@
 # DONT UPLOAD THE DB CONFIG, IT IS SECRET
-db.ts
+**/db.ts
 
 # AUTO GENERATED IGNORES #
 # Logs
