@@ -1,7 +1,8 @@
-/* index.ts
+/* index.ts ROUTER
+Supplies the GET requests for our INDEX PAGES
 Student Name: Joshua Harding
 Student ID: 301186067
-Date: dd/mm/yyyy = 03/10/2021 */
+Date: dd/mm/yyyy = 20/10/2021 */
 import express from "express";
 import { DisplayAboutPage, DisplayContactPage, DisplayHomePage, DisplayProjectsPage, DisplayServicesPage } from "../controllers";
 
@@ -10,26 +11,12 @@ const router = express.Router();
 // Print to the console to let dev know the app is running.
 console.log("Application started.");
 
-/* GET all needed pages */
+/* GET all needed INDEX pages */
 router.get("/", DisplayHomePage);
-router.get('/', function(req:express.Request, res:express.Response, next:express.NextFunction) {
-  res.render('home', { title: 'Home' });
-});
-
-router.get('/about', function (req: express.Request, res: express.Response, next: express.NextFunction) {
-  res.render('about', { title: 'About Me' });
-});
-
-router.get('/projects', function (req: express.Request, res: express.Response, next: express.NextFunction) {
-  res.render('projects', { title: 'Projects' });
-});
-
-router.get('/services', function (req: express.Request, res: express.Response, next: express.NextFunction) {
-  res.render('services', { title: 'Services' });
-});
-
-router.get('/contact', function (req: express.Request, res: express.Response, next: express.NextFunction) {
-  res.render('contact', { title: 'Contact', layout: 'layouts/contact-layout' });
-});
+router.get('/home', DisplayHomePage);
+router.get('/about', DisplayAboutPage);
+router.get('/projects', DisplayProjectsPage);
+router.get('/services', DisplayServicesPage);
+router.get('/contact', DisplayContactPage);
 
 export default router;
