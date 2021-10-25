@@ -1,3 +1,8 @@
+/* copyAssets.ts MODEL
+Student Name: Joshua Harding
+Student ID: 301186067
+Date: dd/mm/yyyy = 20/10/2021 */
+
 /* This is a helper function that copys our resources into the dist folder before building,
 so that all the transpiled js files can access their needed resources after building.
 It is used in package.json */
