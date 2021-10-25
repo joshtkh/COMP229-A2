@@ -18,7 +18,6 @@ export async function DisplayLoginPage(req: Request, res: Response) {
 
 // After login, redirect them to the contact-list page
 export async function ProcessLoginPage(req: Request, res: Response, next: NextFunction) {
-    console.log("HELLO WTF IS GOING ON");
     return res.redirect('/contact/list');
 }
 
