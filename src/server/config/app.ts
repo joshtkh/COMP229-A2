@@ -19,8 +19,7 @@ import { isLoggedIn } from "../middleware/auth";
 const connectURI = process.env.MONGO_URI ? process.env.MONGO_URI : DBConfig.LocalURI;
 const hostName = process.env.MONGO_URI ? "REMOTE HOST" : "LOCAL HOST";
 const dbSecret = process.env.MONGO_SECRET;
-console.log(process.env.MONGO_URI);
-console.log(process.env.MONGO_SECRET);
+
 // MongoStore options
 const StoreOptions = {
   store: MongoStore.create({
@@ -64,10 +63,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
-// Setup Flash here
-app.use(flash());
 // express session
 app.use(session(StoreOptions));
+// Setup Flash here
+app.use(flash());
+
 // Initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
