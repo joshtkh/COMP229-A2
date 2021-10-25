@@ -65,13 +65,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
-// Setup Flash here
-app.use(flash());
+
 // express session
 app.use(session(StoreOptions));
 // Initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+// Setup Flash here
+app.use(flash());
 
 // ROUTER MIDDLEWARE
 app.use("/", indexRouter);
