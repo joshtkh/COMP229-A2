@@ -13,7 +13,7 @@ import * as DBConfig from './db';
 import passport from "passport";
 import MongoStore from "connect-mongo";
 import session from "express-session";
-import flash from "express-flash";
+import flash from "connect-flash";
 import { isLoggedIn } from "../middleware/auth";
 
 const connectURI = process.env.MONGO_URI ? process.env.MONGO_URI : DBConfig.LocalURI;
