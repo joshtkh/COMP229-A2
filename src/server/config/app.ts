@@ -16,11 +16,16 @@ import session from "express-session";
 import flash from "express-flash";
 import { isLoggedIn } from "../middleware/auth";
 
+const connectURI = process.env.MONGO_URI ? process.env.MONGO_URI : DBConfig.LocalURI;
+const hostName = process.env.MONGO_URI ? "REMOTE HOST" : "LOCAL HOST";
+const dbSecret = process.env.MONGO_SECRET;
+console.log(process.env.MONGO_URI);
+console.log(process.env.MONGO_SECRET);
 // MongoStore options
 const StoreOptions = {
   store: MongoStore.create({
-  mongoUrl: (DBConfig.RemoteURI) ? DBConfig.RemoteURI : DBConfig.LocalURI}),
-  secret: DBConfig.Secret,
+  mongoUrl: connectURI}),
+  secret: dbSecret,
   saveUninitialized: false,
   resave: false,
   cookie: {
@@ -34,8 +39,7 @@ import contactRouter from "../routes/contact";
 import userRouter from "../routes/user";
 
 // DB Configuration
-const connectURI = DBConfig.RemoteURI ? DBConfig.RemoteURI : DBConfig.LocalURI;
-const hostName = DBConfig.RemoteURI ? "REMOTE HOST" : "LOCAL HOST";
+
 mongoose.connect(connectURI);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));

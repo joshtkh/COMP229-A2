@@ -6,7 +6,10 @@ import http from "http";
 import debug from "debug"
 import { HttpError } from "http-errors";
 debug('comp229-a1:server');
+import dotenv from "dotenv";
+dotenv.config();
 import app from "./server/config/app";
+
 
 /**
  * Get port from environment and store in Express.
