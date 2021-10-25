@@ -13,8 +13,10 @@ import * as DBConfig from './db';
 import passport from "passport";
 import MongoStore from "connect-mongo";
 import session from "express-session";
-import flash from "connect-flash";
+import flash from "express-flash";
 import { isLoggedIn } from "../middleware/auth";
+import dotenv from "dotenv";
+dotenv.config();
 
 const connectURI = process.env.MONGO_URI ? process.env.MONGO_URI : DBConfig.LocalURI;
 const hostName = process.env.MONGO_URI ? "REMOTE HOST" : "LOCAL HOST";
@@ -23,7 +25,7 @@ const dbSecret = process.env.MONGO_SECRET;
 // MongoStore options
 const StoreOptions = {
   store: MongoStore.create({
-  mongoUrl: connectURI}),
+  mongoUrl: connectURI }),
   secret: dbSecret,
   saveUninitialized: false,
   resave: false,
@@ -63,11 +65,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
-// express session
-app.use(session(StoreOptions));
 // Setup Flash here
 app.use(flash());
-
+// express session
+app.use(session(StoreOptions));
 // Initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
